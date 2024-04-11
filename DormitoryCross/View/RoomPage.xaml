@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:DormitoryCross.Model"
+             xmlns:viewmodel="clr-namespace:DormitoryCross.ViewModel"
+             x:DataType="viewmodel:StudentsViewModel"
+             x:Class="DormitoryCross.View.RoomPage"
+             Title="{Binding Title}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh"/>
+    </ContentPage.ToolbarItems>
+    
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto"
+          RowSpacing="0">
+        <RefreshView Grid.ColumnSpan="2"
+                     Command="{Binding RefreshCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView Background="Transparent"
+                            Grid.ColumnSpan="2"
+                            ItemsSource="{Binding Students}"
+                            SelectedItem="None">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Student">
+                        <Grid Padding="10, 20, 10, 10" Margin="0, 0, 0, 10">
+                            <Frame CornerRadius="20" BackgroundColor="{StaticResource Primary}"
+                                   Padding="10" Margin="0">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
+                                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:StudentsViewModel}}, Path=GoToDetailsCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout VerticalOptions="StartAndExpand" >
+                                    <Label Text="{Binding FullName}" BackgroundColor="{StaticResource PrimaryDark}"/>
+                                    <Label Text="{Binding NumberContract}"/>
+                                    <Label Text="{Binding Period}"/>
+                                    <Label Text="{Binding Group}"/>
+                                    <Label Text="{Binding Id}"/>
+                                    <Label Text="{Binding NumberRoom}"/>
+                                    <Label Text="{Binding Telefone}"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </RefreshView>
+
+        <Button Text="Get Students"
+                Grid.Row="1"
+                Command="{Binding RefreshCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Margin="8"/>
+
+        <Button Text="Delete"
+                Grid.Row="1"
+                Grid.Column="1"
+                Command="{Binding RemoveCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Margin="8"/>
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2"/>
+    </Grid>
+</ContentPage>

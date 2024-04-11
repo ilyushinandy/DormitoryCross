@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:DormitoryCross.ViewModel"
+             x:Class="DormitoryCross.View.AddStudent"
+             x:DataType="viewmodels:AddStudentViewModel"
+             Title="Добавить студента">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AddStudentViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="*,*">
+        <VerticalStackLayout Grid.RowSpan="2">
+            <Label 
+                Text="Фамилия Имя Отчество:"
+                HorizontalOptions="StartAndExpand"
+                Padding="5"/>
+            <Entry Margin="5,0,5,0"
+                   Text="{Binding FullName}"
+                   VerticalOptions="StartAndExpand"/>
+            <Label 
+                Text="Номер договора:"
+                HorizontalOptions="StartAndExpand"
+                Padding="5"/>
+            <Entry Margin="5,0,5,0"
+                   Text="{Binding NumberContract}"
+                   VerticalOptions="StartAndExpand"/>
+            <Label 
+                Text="Период проживания"
+                HorizontalOptions="StartAndExpand"
+                Padding="5"/>
+            <HorizontalStackLayout>
+                <Entry Margin="5,0,5,0"
+                       Text="{Binding Period}"
+                       VerticalOptions="StartAndExpand"/>
+            </HorizontalStackLayout>
+            <Label 
+                Text="Группа:"
+                HorizontalOptions="StartAndExpand"
+                Padding="5"/>
+            <Entry Margin="5,0,5,0"
+                   Text="{Binding Group}"
+                   VerticalOptions="StartAndExpand"/>
+            <Label 
+                Text="Номер комнаты"
+                HorizontalOptions="StartAndExpand"
+                Padding="5"/>
+            <Entry Margin="5,0,5,0"
+                   Text="{Binding NumberRoom}"
+                   VerticalOptions="StartAndExpand"/>
+            <Label 
+                Text="Телефон"
+                HorizontalOptions="StartAndExpand"
+                Padding="5"/>
+            <Entry Margin="5,0,5,0"
+                   Text="{Binding Telefone}"
+                   VerticalOptions="StartAndExpand"/>
+
+            
+
+            <Button Text="Сохранить"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Command="{Binding SaveCommand}"
+                    Margin="10"/>
+            
+        </VerticalStackLayout>
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                   IsRunning="{Binding IsBusy}"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.RowSpan="2"/>
+    </Grid>
+</ContentPage>

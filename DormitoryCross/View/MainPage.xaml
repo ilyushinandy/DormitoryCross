@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DormitoryCross.MainPage"
+             Title="ПГУАС Общежитие №3">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="logo.png"
+                HeightRequest="150"
+                WidthRequest="150"
+                Margin="10"
+                Aspect="AspectFit"
+                SemanticProperties.Description="ПГУАС" />
+
+            <Button
+                Text="Комнаты" 
+                Clicked="GoToRoomsPageAsync"
+                SemanticProperties.Hint="Counts the number of times you click"
+                HorizontalOptions="FillAndExpand" />
+
+            <Button
+                Text="Поиск" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                HorizontalOptions="FillAndExpand" />
+
+            <Button
+                Text="Добавить студента" 
+                Clicked="GoToAddStudentAsync"
+                SemanticProperties.Hint="Counts the number of times you click"
+                HorizontalOptions="FillAndExpand" />
+
+            <Button
+                Text="Управление данными" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                HorizontalOptions="FillAndExpand" 
+                Clicked="GoToDataManagerPageAsync"/>
+
+            <Button
+                Text="Статистика" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                HorizontalOptions="FillAndExpand" />
+
+            <Button
+                Text="Комната" 
+                Clicked="GoToRoomPage"
+                SemanticProperties.Hint="Counts the number of times you click"
+                HorizontalOptions="FillAndExpand" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

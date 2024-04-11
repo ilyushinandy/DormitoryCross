@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DormitoryCross.View.RoomsPage"
+             xmlns:viewmodel="clr-namespace:DormitoryCross.ViewModel"
+             xmlns:model="clr-namespace:DormitoryCross.Model"
+             x:DataType="viewmodel:RoomsViewModel"
+             Title="{Binding Title}">
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          Padding="5">
+        <RefreshView Grid.ColumnSpan="2"
+                     Command="{Binding RefreshCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView  Grid.ColumnSpan="2"
+                             ItemsSource="{Binding Rooms}"
+                             SelectedItem="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="5"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Room">
+                        <Frame WidthRequest="45"
+                               HeightRequest="45"
+                               BackgroundColor="{Binding Color}"
+                               CornerRadius="10"
+                               Margin="0,5,0,0"
+                               Padding="0,0,0,3">
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding Color}" Value="Red">
+                                    <Setter Property="BackgroundColor" Value="Red"/>
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RoomsViewModel}}, Path=GoToRoomPageCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding Number}"
+                                   VerticalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>
