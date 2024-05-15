@@ -10,6 +10,11 @@ namespace DormitoryCross
             InitializeComponent();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+
         private async void GoToRoomPage(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync(nameof(RoomPage));
@@ -27,7 +32,12 @@ namespace DormitoryCross
 
         private async void GoToDataManagerPageAsync(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"{nameof(DataManagerPage)}");
+            await Shell.Current.GoToAsync(nameof(DataManagerPage));
+        }
+
+        private async void GoToSearchPageAsync(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(SearchPage));
         }
     }
 

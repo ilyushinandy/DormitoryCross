@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DormitoryCross.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,15 @@ namespace DormitoryCross.ViewModel
 
         [ObservableProperty]
         Student student;
+
+        [RelayCommand]
+        async Task GoAddStudent()
+        {
+            await Shell.Current.GoToAsync($"{nameof(AddStudent)}", true,
+                new Dictionary<string, object>
+                {
+                    {"Student", student }
+                });
+        }
     }
 }

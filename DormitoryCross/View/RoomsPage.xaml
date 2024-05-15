@@ -40,6 +40,7 @@
                                    VerticalTextAlignment="Center"
                                    VerticalOptions="Center"
                                    HorizontalTextAlignment="Center"
+                                   TextColor="White"
                                    />
                         </Frame>
                     </DataTemplate>

@@ -10,7 +10,9 @@ namespace DormitoryCross.Model
         public string NumberContract { get; set; }
         public string Period { get; set; }
         public string Group { get; set; }
-        public string Telefone { get; set; }
         public string NumberRoom { get; set; }
+        public string Telefone { get; set; }
+        public string FullNameParents { get; set; }
+        public string TelefoneParents { get; set; }
     }
 }

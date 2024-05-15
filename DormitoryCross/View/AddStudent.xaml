@@ -10,65 +10,40 @@
         <viewmodels:AddStudentViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="*,*">
-        <VerticalStackLayout Grid.RowSpan="2">
-            <Label 
-                Text="Фамилия Имя Отчество:"
-                HorizontalOptions="StartAndExpand"
-                Padding="5"/>
-            <Entry Margin="5,0,5,0"
-                   Text="{Binding FullName}"
-                   VerticalOptions="StartAndExpand"/>
-            <Label 
-                Text="Номер договора:"
-                HorizontalOptions="StartAndExpand"
-                Padding="5"/>
-            <Entry Margin="5,0,5,0"
-                   Text="{Binding NumberContract}"
-                   VerticalOptions="StartAndExpand"/>
-            <Label 
-                Text="Период проживания"
-                HorizontalOptions="StartAndExpand"
-                Padding="5"/>
-            <HorizontalStackLayout>
-                <Entry Margin="5,0,5,0"
-                       Text="{Binding Period}"
-                       VerticalOptions="StartAndExpand"/>
-            </HorizontalStackLayout>
-            <Label 
-                Text="Группа:"
-                HorizontalOptions="StartAndExpand"
-                Padding="5"/>
-            <Entry Margin="5,0,5,0"
-                   Text="{Binding Group}"
-                   VerticalOptions="StartAndExpand"/>
-            <Label 
-                Text="Номер комнаты"
-                HorizontalOptions="StartAndExpand"
-                Padding="5"/>
-            <Entry Margin="5,0,5,0"
-                   Text="{Binding NumberRoom}"
-                   VerticalOptions="StartAndExpand"/>
-            <Label 
-                Text="Телефон"
-                HorizontalOptions="StartAndExpand"
-                Padding="5"/>
-            <Entry Margin="5,0,5,0"
-                   Text="{Binding Telefone}"
-                   VerticalOptions="StartAndExpand"/>
+    <ScrollView>
+        <Grid RowDefinitions="*,*">
+            <VerticalStackLayout Grid.RowSpan="2" Margin="5">
+                <Label Text="Фамилия Имя Отчество:"
+               Style="{StaticResource LabelFrame}"/>
+                <Entry Text="{Binding FullName}"/>
+                <Label Text="Номер договора:" Style="{StaticResource LabelFrame}"/>
+                <Entry Text="{Binding NumberContract}"/>
+                <Label Text="Период проживания:" Style="{StaticResource LabelFrame}"/>
+                <Entry Text="{Binding Period}"/>
+                <Label Text="Группа:" Style="{StaticResource LabelFrame}"/>
+                <Entry Text="{Binding Group}"/>
+                <Label Text="Номер комнаты:" Style="{StaticResource LabelFrame}"/>
+                <Entry Text="{Binding NumberRoom}"/>
+                <Label Text="Телефон:" Style="{StaticResource LabelFrame}"/>
+                <Entry Text="{Binding Telefone}"/>
+                <Label Text="Дополнительная информация" TextColor="{StaticResource Primary}" Style="{StaticResource LabelFrame}"/>
+                <BoxView HeightRequest="1" BackgroundColor="{StaticResource Primary}"/>
+                <Label Text="ФИО родителй:" Style="{StaticResource LabelFrame}"/>
+                <Entry Text="{Binding FullNameParents}"/>
+                <Label Text="Телефон родителей:" Style="{StaticResource LabelFrame}"/>
+                <Entry Text="{Binding TelefoneParents}"/>
 
-            
+                <Button Text="Сохранить"
+                IsEnabled="{Binding IsNotBusy}"
+                Command="{Binding SaveCommand}"
+                Margin="10"/>
 
-            <Button Text="Сохранить"
-                    IsEnabled="{Binding IsNotBusy}"
-                    Command="{Binding SaveCommand}"
-                    Margin="10"/>
-            
-        </VerticalStackLayout>
-        <ActivityIndicator IsVisible="{Binding IsBusy}"
-                   IsRunning="{Binding IsBusy}"
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.RowSpan="2"/>
-    </Grid>
+            </VerticalStackLayout>
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+               IsRunning="{Binding IsBusy}"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="CenterAndExpand"
+               Grid.RowSpan="2"/>
+        </Grid>
+    </ScrollView>
 </ContentPage>

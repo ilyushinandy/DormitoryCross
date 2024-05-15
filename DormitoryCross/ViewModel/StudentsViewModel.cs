@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.InkML;
 using DormitoryCross.Services;
 using DormitoryCross.View;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DormitoryCross.ViewModel
 {
@@ -14,15 +16,14 @@ namespace DormitoryCross.ViewModel
         SQLServices sQLServices;
 
         [ObservableProperty]
-        string numberRoom;
+        public string numberRoom;
 
         public ObservableCollection<Student> Students { get; } = new();
 
         IConnectivity connectivity;
 
-        public StudentsViewModel(SQLServices sQLServices) 
+        public StudentsViewModel(SQLServices sQLServices)
         {
-            Title = "Комната №" + numberRoom;
             this.sQLServices = sQLServices;
             this.connectivity = Connectivity.Current;
             Refresh();
@@ -42,12 +43,14 @@ namespace DormitoryCross.ViewModel
                 {
                     {"Student", student }
                 });
+            IsBusy = false;
+            IsRefreshing = true;
         }
 
         [RelayCommand]
-        async Task Add()
+        async Task GoAddStudent()
         {
-            await Shell.Current.GoToAsync(nameof(AddStudent));
+            await Shell.Current.GoToAsync($"{nameof(AddStudent)}?roomAdd={numberRoom}");
         }
 
         [RelayCommand]
@@ -56,6 +59,8 @@ namespace DormitoryCross.ViewModel
             await sQLServices.RemoveStudent(13);
             await Refresh();
         }
+
+        
 
         [RelayCommand]
         async Task Refresh()
@@ -74,6 +79,8 @@ namespace DormitoryCross.ViewModel
                 IsBusy = true;
 
                 await Task.Delay(2000);
+
+                Title = "Комната № " + numberRoom;
 
                 Students.Clear();
 

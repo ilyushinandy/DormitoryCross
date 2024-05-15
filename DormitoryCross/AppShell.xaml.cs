@@ -13,6 +13,9 @@ namespace DormitoryCross
             Routing.RegisterRoute(nameof(AddStudent), typeof(AddStudent));
             Routing.RegisterRoute(nameof(RoomsPage), typeof(RoomsPage));
             Routing.RegisterRoute(nameof(DataManagerPage), typeof(DataManagerPage));
+            Routing.RegisterRoute(nameof(SearchPage), typeof(SearchPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+            Routing.RegisterRoute(nameof(StatisticsPage), typeof(StatisticsPage));
         }
     }
 }

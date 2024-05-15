@@ -5,19 +5,25 @@
              xmlns:viewmodel="clr-namespace:DormitoryCross.ViewModel"
              x:DataType="viewmodel:StudentsViewModel"
              x:Class="DormitoryCross.View.RoomPage"
-             Title="{Binding Title}">
-    
+             Title="{Binding NumberRoom, StringFormat='Комната № {0}'}">
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh"/>
+        <ToolbarItem Text="Refresh"
+                     Command="{Binding RefreshCommand}"/>
     </ContentPage.ToolbarItems>
-    
+
     <Grid ColumnDefinitions="*,*"
           ColumnSpacing="5"
-          RowDefinitions="*,Auto"
+          RowDefinitions="Auto,*,Auto"
           RowSpacing="0">
+
+        <Label Text="Проживают" Grid.Row="0"
+               Margin="0,10,0,0" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+
         <RefreshView Grid.ColumnSpan="2"
                      Command="{Binding RefreshCommand}"
-                     IsRefreshing="{Binding IsRefreshing}">
+                     IsRefreshing="{Binding IsRefreshing}"
+                     Grid.Row="1">
             <CollectionView Background="Transparent"
                             Grid.ColumnSpan="2"
                             ItemsSource="{Binding Students}"
@@ -27,21 +33,23 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Student">
-                        <Grid Padding="10, 20, 10, 10" Margin="0, 0, 0, 10">
-                            <Frame CornerRadius="20" BackgroundColor="{StaticResource Primary}"
-                                   Padding="10" Margin="0">
+                        <Grid Padding="10, 10, 10, 10" Margin="0, 0, 0, 10">
+                            <Frame CornerRadius="20" Padding="10" Margin="0">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer CommandParameter="{Binding .}"
                                               Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:StudentsViewModel}}, Path=GoToDetailsCommand}"/>
                                 </Frame.GestureRecognizers>
-                                <VerticalStackLayout VerticalOptions="StartAndExpand" >
-                                    <Label Text="{Binding FullName}" BackgroundColor="{StaticResource PrimaryDark}"/>
-                                    <Label Text="{Binding NumberContract}"/>
-                                    <Label Text="{Binding Period}"/>
-                                    <Label Text="{Binding Group}"/>
-                                    <Label Text="{Binding Id}"/>
-                                    <Label Text="{Binding NumberRoom}"/>
-                                    <Label Text="{Binding Telefone}"/>
+                                <VerticalStackLayout VerticalOptions="StartAndExpand" Margin="2">
+                                    <Label Text="Студент" Style="{StaticResource LabelFrame}" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding FullName}" Style="{StaticResource LabelFrame}"/>
+                                    <Label Text="Номер договора:" Style="{StaticResource LabelFrame}"/>
+                                    <Label Text="{Binding NumberContract}" Style="{StaticResource LabelFrame}"/>
+                                    <Label Text="Период проживания:" Style="{StaticResource LabelFrame}"/>
+                                    <Label Text="{Binding Period}" Style="{StaticResource LabelFrame}"/>
+                                    <Label Text="Группа:" Style="{StaticResource LabelFrame}"/>
+                                    <Label Text="{Binding Group}" Style="{StaticResource LabelFrame}"/>
+                                    <Label Text="Телефон:" Style="{StaticResource LabelFrame}"/>
+                                    <Label Text="{Binding Telefone}" Style="{StaticResource LabelFrame}"/>
                                 </VerticalStackLayout>
                             </Frame>
                         </Grid>
@@ -51,18 +59,13 @@
             </CollectionView>
         </RefreshView>
 
-        <Button Text="Get Students"
-                Grid.Row="1"
-                Command="{Binding RefreshCommand}"
+        <Button Text="Добавить студента"
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Command="{Binding GoAddStudentCommand}"
                 IsEnabled="{Binding IsNotBusy}"
                 Margin="8"/>
-
-        <Button Text="Delete"
-                Grid.Row="1"
-                Grid.Column="1"
-                Command="{Binding RemoveCommand}"
-                IsEnabled="{Binding IsNotBusy}"
-                Margin="8"/>
+        
         <ActivityIndicator IsVisible="{Binding IsBusy}"
                            IsRunning="{Binding IsBusy}"
                            HorizontalOptions="FillAndExpand"

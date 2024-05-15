@@ -6,11 +6,33 @@
              x:DataType="viewmodel:StudentsDetailsViewModel"
              Title="Студент">
     <ScrollView>
-        <VerticalStackLayout>
-            <Label 
-                Text="{Binding Student.FullName}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-        </VerticalStackLayout>
+        <Grid RowDefinitions="*, auto" Margin="10">
+            <VerticalStackLayout>
+                <Label 
+                       Text="{Binding Student.FullName}"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding Student.Id, StringFormat='Номер договора: {0}'}" Style="{StaticResource LabelFrame}"/>
+                <Label Text="Период проживания:" Style="{StaticResource LabelFrame}"/>
+                <Label Text="{Binding Student.Period}" Style="{StaticResource LabelFrame}"/>
+                <Label Text="{Binding Student.Group, StringFormat='Группа: {0}'}" Style="{StaticResource LabelFrame}"/>
+                <Label Text="{Binding Student.Telefone, StringFormat='Телефон: {0}'}" Style="{StaticResource LabelFrame}"/>
+                <BoxView HeightRequest="1" BackgroundColor="{StaticResource Primary}"/>
+                <Label Text="Дополнительная информация" Style="{StaticResource LabelFrame}"/>
+                <Label Text="ФИО родителей:" Style="{StaticResource LabelFrame}"/>
+                <Label Text="{Binding Student.FullNameParents}" Style="{StaticResource LabelFrame}"/>
+                <Label Text="Телефон родителей:" Style="{StaticResource LabelFrame}"/>
+                <Label Text="{Binding Student.TelefoneParents}" Style="{StaticResource LabelFrame}"/>
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Center">
+                <Button Text="Удалить"
+                        Margin="5"/>
+                <Button Text="Редактировать"
+                        Command="{Binding GoAddStudentCommand}"
+                        Margin="5"/>
+            </HorizontalStackLayout>
+        </Grid>
+        
     </ScrollView>
 </ContentPage>

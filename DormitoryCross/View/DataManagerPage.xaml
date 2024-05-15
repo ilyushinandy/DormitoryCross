@@ -16,9 +16,12 @@
 
             <Button Text="Сохранить БД в Excel"
                     Command="{Binding PickFolderCommand}"/>
-            <Button Text="Загрузмть БД из Excel"/>
-            <Button Text="Сохранить БД на сервер"/>
-            <Button Text="Загрузить БД с сервера"/>
+            <Button Text="Загрузмть БД из Excel"
+                    Command="{Binding LoadDBIsExcelCommand}"/>
+            <Button Text="Сохранить БД на сервер"
+                    Command="{Binding InsertBdInServerCommand}"/>
+            <Button Text="Загрузить БД с сервера"
+                    Command="{Binding LoadBdIsServerCommand}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

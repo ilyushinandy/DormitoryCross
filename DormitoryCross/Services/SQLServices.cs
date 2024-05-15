@@ -1,4 +1,6 @@
-﻿using SQLite;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using MySql.Data.MySqlClient;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +24,7 @@ namespace DormitoryCross.Services
             await conn.CreateTableAsync<Student>();
         }
 
-        public async Task AddStudent(string fullName, string numberContract, string period, string group, string telefon,
-            string numberRoom)
+        public async Task AddStudent(string fullName, string numberContract, string period, string group, string numberRoom, string telefon, string fullNameParents, string telefoneParents)
         {
             await Init();
             var student = new Student()
@@ -32,11 +33,32 @@ namespace DormitoryCross.Services
                 NumberContract = numberContract,
                 Period = period,
                 Group = group,
+                NumberRoom = numberRoom,
                 Telefone = telefon,
-                NumberRoom = numberRoom
+                FullNameParents = fullNameParents,
+                TelefoneParents = telefoneParents
             };
 
             var id = await conn.InsertAsync(student);
+        }
+
+        public async Task UpdateStudent(int id, string fullName, string numberContract, string period, string group, string numberRoom, string telefon, string fullNameParents, string telefoneParents)
+        {
+            await Init();
+            var student = new Student()
+            {
+                Id = id,
+                FullName = fullName,
+                NumberContract = numberContract,
+                Period = period,
+                Group = group,
+                NumberRoom = numberRoom,
+                Telefone = telefon,
+                FullNameParents = fullNameParents,
+                TelefoneParents = telefoneParents
+            };
+
+            var st = await conn.UpdateAsync(student);
         }
 
         public async Task RemoveStudent(int id)
@@ -44,6 +66,13 @@ namespace DormitoryCross.Services
             await Init();
 
             conn.DeleteAsync<Student>(id);
+        }
+
+        public async Task RemoveAllStudent()
+        {
+            await Init();
+
+            conn.DeleteAllAsync<Student>();
         }
 
         public async Task<IEnumerable<Student>> GetStudent()
@@ -59,6 +88,17 @@ namespace DormitoryCross.Services
             await Init();
 
             var students = await conn.Table<Student>().Where(s => s.NumberRoom == numberRoom).ToListAsync();
+            return students;
+        }
+
+        public async Task<IEnumerable<Student>> SearchStudent(string fullName)
+        {
+            await Init();
+
+            //var students = await conn.Table<Student>().Where(s => s.FullName.Contains(fullName)).ToListAsync();
+            //string query = $"SELECT * FROM `Students` WHERE FULLNAME LIKE @value";
+            var students = await conn.QueryAsync<Student>($"SELECT * FROM Student WHERE FULLNAME LIKE '%{fullName}%'");
+
             return students;
         }
     }

@@ -8,6 +8,7 @@
 
     <Color x:Key="Primary">#527da3</Color>
     <Color x:Key="PrimaryDark">#426482</Color>
+    <Color x:Key="PrimaryLigth">#c2e5ff</Color>
     <Color x:Key="PrimaryDarkText">#242424</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
     <Color x:Key="SecondaryDarkText">#9880e5</Color>

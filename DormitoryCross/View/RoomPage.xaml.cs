@@ -9,9 +9,14 @@ public partial class RoomPage : ContentPage
     StudentsViewModel studentsViewModel = new(sQLServices);
 
     public RoomPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
 
         BindingContext = studentsViewModel;
 	}
+
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+    }
 }
