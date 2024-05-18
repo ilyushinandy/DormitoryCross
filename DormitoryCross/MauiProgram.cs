@@ -31,7 +31,6 @@ namespace DormitoryCross
             builder.Services.AddTransient<StudentsDetailsViewModel>();
 
             builder.Services.AddTransient<DetailsPage>();
-            
 
             builder.Logging.AddDebug();
 #endif

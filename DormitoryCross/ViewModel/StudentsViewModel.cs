@@ -70,11 +70,11 @@ namespace DormitoryCross.ViewModel
 
             try
             {
-                if (connectivity.NetworkAccess != NetworkAccess.Internet)
-                {
-                    await Shell.Current.DisplayAlert("Internet issue", $"Check internet!", "Ok");
-                    return;
-                }
+                //if (connectivity.NetworkAccess != NetworkAccess.Internet)
+                //{
+                //    await Shell.Current.DisplayAlert("Internet issue", $"Check internet!", "Ok");
+                //    return;
+                //}
 
                 IsBusy = true;
 

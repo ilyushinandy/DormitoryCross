@@ -13,6 +13,13 @@ namespace DormitoryCross
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            //var stack = Shell.Current.Navigation.NavigationStack.ToArray();
+
+            //for (int i = stack.Length - 1; i > 0; i--)
+            //{
+            //    Shell.Current.Navigation.RemovePage(stack[i]);
+            //}
         }
 
         private async void GoToRoomPage(object sender, EventArgs e)
