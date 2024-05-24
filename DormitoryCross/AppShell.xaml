@@ -8,7 +8,7 @@
     Title="DormitoryCross">
 
     <ShellContent
-        Title="Home"
+        Title="LoginPage"
         ContentTemplate="{DataTemplate local:LoginPage}"
         Route="LoginPage"/>
 

@@ -17,8 +17,14 @@
           RowDefinitions="Auto,*,Auto"
           RowSpacing="0">
 
-        <Label Text="Проживают" Grid.Row="0"
-               Margin="0,10,0,0" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+        <Label Text="{Binding CountRoom}" Grid.Row="0"
+               Margin="0,10,0,0" HorizontalTextAlignment="Center" HorizontalOptions="Center">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding ColorRoom}" Value="true">
+                    <Setter Property="TextColor" Value="Red"/>
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
 
         <RefreshView Grid.ColumnSpan="2"
                      Command="{Binding RefreshCommand}"

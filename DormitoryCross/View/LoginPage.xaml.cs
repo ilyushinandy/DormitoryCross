@@ -23,7 +23,7 @@ public partial class LoginPage : ContentPage
         users = await sQLServices.GetUsers();
         if (users.Count().Equals(0))
         {
-            await Shell.Current.GoToAsync($"{nameof(AdminPage)}");
+            await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
         }
     }
 
@@ -33,18 +33,18 @@ public partial class LoginPage : ContentPage
         {
             if (password.Text.Equals(passwordAdmin))
             {
-                await Shell.Current.GoToAsync($"{nameof(AdminPage)}");
+                await Shell.Current.GoToAsync($"{nameof(AdminPage)}?Settings={logindAdmin}");
             }
             else if(password.Text.Equals(passwordAdmin) && login.Text.Equals(logindAdmin))
             {
-                await Shell.Current.GoToAsync($"{nameof(MainPage)}");
+                await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
             }
 
             foreach (var user in users)
             {
                 if (user.Name.Equals(login.Text) & user.Password.Equals(password.Text))
                 {
-                    await Shell.Current.GoToAsync(nameof(MainPage));
+                    await Shell.Current.GoToAsync($"/{nameof(MainPage)}");
                 }
             }
         }

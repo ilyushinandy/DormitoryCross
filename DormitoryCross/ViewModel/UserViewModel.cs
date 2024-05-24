@@ -1,4 +1,6 @@
-﻿using DormitoryCross.Services;
+﻿using CommunityToolkit.Maui.Alerts;
+using DormitoryCross.Services;
+using DormitoryCross.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,27 +9,59 @@ using System.Threading.Tasks;
 
 namespace DormitoryCross.ViewModel
 {
+    [QueryProperty("Settings", "Settings")]
     public partial class UserViewModel : BaseViewModel
     {
         SQLServices sQLServices;
 
+        [ObservableProperty]
+        string settings;
+
+        bool title;
+
         public ObservableCollection<User> Users { get; } = new();
 
-        string id, name, email, password;
+        string id, name, email, password, buttonText;
 
         public string Id { get => id; set => SetProperty(ref id, value); }
         public string Name { get => name; set => SetProperty(ref name, value); }
         public string Email { get => email; set => SetProperty(ref email, value); }
         public string Password { get => password; set => SetProperty(ref password, value); }
+        public string ButtonText { get => buttonText; set => SetProperty(ref buttonText, value); }
 
         [ObservableProperty]
         bool isRefreshing;
 
         public UserViewModel()
         {
-            Title = "Статистика";
             sQLServices = new SQLServices();
             GetUsers();
+
+            if (title)
+            {
+                Title = "Настройки администратора";
+            }
+            else
+            {
+                Title = "Настройки";
+            }
+
+            ButtonText = "Сохранить";
+        }
+
+        async Task Init()
+        {
+            await Task.Delay(2000);
+
+            foreach (var user in Users)
+            {
+                Id = user.Id.ToString();
+                Name = user.Name;
+                Email = user.Email;
+                Password = user.Password;
+            }
+
+            ButtonText = "Редактировать";
         }
 
         [RelayCommand]
@@ -36,11 +70,20 @@ namespace DormitoryCross.ViewModel
             if (IsBusy)
                 return;
 
+            await Task.Delay(2000);
+
+            if (settings != null)
+            {
+                title = true;
+            }
+            else
+            {
+                title = false;
+            }
+
             try
             {
                 IsBusy = true;
-
-                await Task.Delay(2000);
 
                 Users.Clear();
 
@@ -49,6 +92,11 @@ namespace DormitoryCross.ViewModel
                 foreach (var user in users)
                 {
                     Users.Add(user);
+                }
+
+                if (Users.Count > 0 && !title)
+                {
+                    Init();
                 }
             }
             catch (Exception ex)
@@ -99,6 +147,12 @@ namespace DormitoryCross.ViewModel
             try
             {
                 await sQLServices.RemoveUser(int.Parse(Id));
+                Id = "";
+                Name = "";
+                Email = "";
+                Password = "";
+                await Toast.Make("Удаление успешно!").Show();
+                await GetUsers();
             }
             catch (Exception ex)
             {

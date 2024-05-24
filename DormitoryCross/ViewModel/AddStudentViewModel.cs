@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace DormitoryCross.ViewModel
 {
     [QueryProperty("Student", "Student")]
-    [QueryProperty("roomAdd", "roomAdd")]
+    [QueryProperty("RoomAdd", "RoomAdd")]
     public partial class AddStudentViewModel: BaseViewModel
     {
         SQLServices sQLServices;
@@ -69,8 +69,8 @@ namespace DormitoryCross.ViewModel
                 TelefoneParents = student.TelefoneParents;
             }
 
-            if (roomAdd != null)
-                NumberRoom = roomAdd;
+            if (RoomAdd != null)
+                NumberRoom = RoomAdd;
         }
 
         [RelayCommand]
@@ -78,6 +78,9 @@ namespace DormitoryCross.ViewModel
         {
             if (IsBusy)
                 return;
+
+            if (RoomAdd != null)
+                NumberRoom = RoomAdd;
 
             if (FullName != null & NumberContract != null & Period != null & Group != null & Telefone != null &
                 NumberRoom != null & FullNameParents != null & telefoneParents != null)

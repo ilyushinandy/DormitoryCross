@@ -19,7 +19,8 @@
                x:Name="login"/>
         
         <Entry Placeholder="Введите пароль:" Margin="5"
-               x:Name="password"/>
+               x:Name="password"
+               IsPassword="True"/>
         
         <Button Text="Войти"
                 Margin="5,5,5,5"

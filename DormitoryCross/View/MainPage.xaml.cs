@@ -1,6 +1,6 @@
 ﻿using DormitoryCross.View;
 
-namespace DormitoryCross
+namespace DormitoryCross.View
 {
     public partial class MainPage : ContentPage
     {
@@ -14,12 +14,24 @@ namespace DormitoryCross
         {
             base.OnAppearing();
 
+            var a = Shell.Current.CurrentState;
+
+            Routing.UnRegisterRoute(nameof(LoginPage));
+
+            var b = Shell.Current.CurrentState;
+
             //var stack = Shell.Current.Navigation.NavigationStack.ToArray();
 
             //for (int i = stack.Length - 1; i > 0; i--)
             //{
             //    Shell.Current.Navigation.RemovePage(stack[i]);
             //}
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            
+            return base.OnBackButtonPressed();
         }
 
         private async void GoToRoomPage(object sender, EventArgs e)
@@ -45,6 +57,16 @@ namespace DormitoryCross
         private async void GoToSearchPageAsync(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync(nameof(SearchPage));
+        }
+
+        private async void GoToSettingsPageAsync(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"{nameof(SettingsPage)}");
+        }
+
+        private async void GoToStatisticsPageAsync(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(StatisticsPage));
         }
     }
 

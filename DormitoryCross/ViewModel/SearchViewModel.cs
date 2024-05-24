@@ -24,7 +24,7 @@ namespace DormitoryCross.ViewModel
 
         public SearchViewModel()
         {
-            Title = "Статистика";
+            Title = "Поиск студента";
             sQLServices = new SQLServices();
         }
 

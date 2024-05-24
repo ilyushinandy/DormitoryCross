@@ -15,8 +15,16 @@ namespace DormitoryCross.ViewModel
     {
         SQLServices sQLServices;
 
+        RoomsViewModel roomsViewModel;
+
         [ObservableProperty]
         public string numberRoom;
+
+        [ObservableProperty]
+        public string countRoom;
+
+        [ObservableProperty]
+        public bool colorRoom;
 
         public ObservableCollection<Student> Students { get; } = new();
 
@@ -26,6 +34,8 @@ namespace DormitoryCross.ViewModel
         {
             this.sQLServices = sQLServices;
             this.connectivity = Connectivity.Current;
+            roomsViewModel = new RoomsViewModel(sQLServices);
+            ColorRoom = false;
             Refresh();
         }
 
@@ -50,13 +60,13 @@ namespace DormitoryCross.ViewModel
         [RelayCommand]
         async Task GoAddStudent()
         {
-            await Shell.Current.GoToAsync($"{nameof(AddStudent)}?roomAdd={numberRoom}");
+            await Shell.Current.GoToAsync($"{nameof(AddStudent)}?RoomAdd={numberRoom}");
         }
 
         [RelayCommand]
         async Task Remove(Student student)
         {
-            await sQLServices.RemoveStudent(13);
+            await sQLServices.RemoveStudent(student.Id);
             await Refresh();
         }
 
@@ -89,6 +99,23 @@ namespace DormitoryCross.ViewModel
                 foreach (var student in students)
                 {
                     Students.Add(student);
+                }
+
+                if (roomsViewModel.twoRooms.Contains(numberRoom))
+                {
+                    CountRoom = $"Проживают {Students.Count} / 2";
+                    if (Students.Count > 2)
+                    {
+                        ColorRoom = true;
+                    }
+                }
+                else if (roomsViewModel.threeRooms.Contains(numberRoom))
+                {
+                    CountRoom = $"Проживают {Students.Count} / 3";
+                    if (Students.Count > 3)
+                    {
+                        ColorRoom = true;
+                    }
                 }
 
                 //var students = await serverService.GetStudents();

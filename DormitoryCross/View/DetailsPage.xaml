@@ -27,9 +27,10 @@
 
             <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Center">
                 <Button Text="Удалить"
-                        Margin="5"/>
+                        Margin="5"
+                        Command='{Binding RemoveCommand}'/>
                 <Button Text="Редактировать"
-                        Command="{Binding GoAddStudentCommand}"
+                        Command="{Binding GoUpdateStudentCommand}"
                         Margin="5"/>
             </HorizontalStackLayout>
         </Grid>

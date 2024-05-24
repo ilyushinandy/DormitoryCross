@@ -12,5 +12,10 @@ namespace DormitoryCross.Model
             Number = number;
             Color = color;
         }
+
+        public Room(string number)
+        {
+            Number = number;
+        }
     }
 }
