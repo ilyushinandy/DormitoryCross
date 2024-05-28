@@ -98,6 +98,59 @@ namespace DormitoryCross.Services
             }
         }
 
+        public async Task InsertUser(string name, string email, string password)
+        {
+            await Connection();
+
+            string query = "INSERT INTO `Users` (`NAME`, `EMAIL`, `PASSWORD`) VALUES (@value1, @value2, @value3)";
+
+            try
+            {
+                using (MySqlCommand command = new MySqlCommand(query, mySqlConnection))
+                {
+                    command.Parameters.AddWithValue("@value1", name);
+                    command.Parameters.AddWithValue("@value2", email);
+                    command.Parameters.AddWithValue("@value3", password);
+                    command.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
+        public async Task DeleteUser(string id)
+        {
+            await Connection();
+
+            string query = $"DELETE FROM `Users` WHERE 'Users'.'ID' = {id}";
+
+            try
+            {
+                using (MySqlCommand command = new MySqlCommand(query, mySqlConnection))
+                {
+                    //command.Parameters.AddWithValue("@value1", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
+        }
+
+
+
         public async Task TruncateBD()
         {
             await Connection();

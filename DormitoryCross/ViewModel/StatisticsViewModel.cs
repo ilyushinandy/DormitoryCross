@@ -109,6 +109,7 @@ namespace DormitoryCross.ViewModel
                         RigthStudents++;
                     }
                 }
+
                 foreach(var r in allRooms)
                 {
                    if (!filledRooms.Contains(r))
@@ -137,6 +138,7 @@ namespace DormitoryCross.ViewModel
                 return;
 
             await Shell.Current.GoToAsync($"{nameof(RoomPage)}?NumberRoom={room.Number}");
+            isRefreshing = true;
         }
     }
 }

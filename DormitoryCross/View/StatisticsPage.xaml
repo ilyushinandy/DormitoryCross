@@ -8,40 +8,42 @@
              Title="{Binding Title}">
 
     <ScrollView>
-        <VerticalStackLayout Margin="10">
+        <Grid Margin="10"
+              RowDefinitions="Auto, *">
 
-            <Label Text="{Binding Students.Count, StringFormat='Всего проживает студентов: {0}'}"
-                   Margin="5,0,5,10"/>
+            <VerticalStackLayout Grid.Row="0">
+                <Label Text="{Binding Students.Count, StringFormat='Всего проживает студентов: {0}'}"
+        Margin="5,0,5,10"/>
 
-            <Label Text="{Binding RigthStudents, StringFormat='В правом блоке: {0}'}"
-                   Margin="5,0,5,10"/>
+                <Label Text="{Binding RigthStudents, StringFormat='В правом блоке: {0}'}"
+        Margin="5,0,5,10"/>
 
-            <Label Text="{Binding LeftStudents, StringFormat='В левом блоке: {0}'}"
-                   Margin="5,0,5,10"/>
-            
-            <Label Text="Свободные комнаты:"
-                   Margin="5,0,5,0"/>
+                <Label Text="{Binding LeftStudents, StringFormat='В левом блоке: {0}'}"
+        Margin="5,0,5,10"/>
 
-            <RefreshView>
-                <CollectionView ItemsSource="{Binding Rooms}"
-                                SelectedItem="None">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Room">
-                            <Frame Margin="2" Padding="3" BackgroundColor="Transparent" BorderColor="Transparent">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:StatisticsViewModel}}, Path=GoToRoomPageCommand}"/>
-                                </Frame.GestureRecognizers>
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding Number}"/>
-                                    <BoxView HeightRequest="1" BackgroundColor="{StaticResource Primary}"/>
-                                </VerticalStackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </RefreshView>
+                <Label Text="Свободные комнаты:"
+        Margin="5,0,5,0"/>
+            </VerticalStackLayout>
 
-        </VerticalStackLayout>
+            <CollectionView ItemsSource="{Binding Rooms}"
+                SelectedItem="None"
+                Grid.Row="1">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Room">
+                        <Frame Margin="2" Padding="3" BackgroundColor="Transparent" BorderColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:StatisticsViewModel}}, Path=GoToRoomPageCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Number}"/>
+                                <BoxView HeightRequest="1" BackgroundColor="{StaticResource Primary}"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
     </ScrollView>
 </ContentPage>

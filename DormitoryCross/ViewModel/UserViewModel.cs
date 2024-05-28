@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using DormitoryCross.Services;
 using DormitoryCross.View;
+using Microsoft.Maui.Networking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace DormitoryCross.ViewModel
     public partial class UserViewModel : BaseViewModel
     {
         SQLServices sQLServices;
+        ServerServices serverServices;
+        IConnectivity connectivity;
 
         [ObservableProperty]
         string settings;
@@ -35,6 +38,8 @@ namespace DormitoryCross.ViewModel
         public UserViewModel()
         {
             sQLServices = new SQLServices();
+            serverServices = new ServerServices();
+            this.connectivity = Connectivity.Current;
             GetUsers();
 
             if (title)
@@ -121,9 +126,13 @@ namespace DormitoryCross.ViewModel
             try
             {
                 await sQLServices.AddUsers(Name, Email, Password);
-                Name = "";
-                Email = "";
-                Password = "";
+                if (connectivity.NetworkAccess != NetworkAccess.Internet)
+                {
+                    await Shell.Current.DisplayAlert("Нет подключения к сети", $"Пароль сохранен только локально!", "Ok");
+                    return;
+                }
+                await serverServices.InsertUser(Name, Email, Password);
+                ButtonText = "Редактировать";
             }
             catch (Exception ex)
             {
@@ -146,11 +155,19 @@ namespace DormitoryCross.ViewModel
 
             try
             {
-                await sQLServices.RemoveUser(int.Parse(Id));
+                await sQLServices.RemoveUser(int.Parse(Id)); 
+                
+                if (connectivity.NetworkAccess != NetworkAccess.Internet)
+                {
+                    await Shell.Current.DisplayAlert("Нет подключения к сети", $"Проверьте интернет!", "Ok");
+                    return;
+                }
+                await serverServices.DeleteUser(Id);
                 Id = "";
                 Name = "";
                 Email = "";
                 Password = "";
+                ButtonText = "Сохранить";
                 await Toast.Make("Удаление успешно!").Show();
                 await GetUsers();
             }
