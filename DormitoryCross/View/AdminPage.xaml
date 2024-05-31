@@ -5,18 +5,22 @@
              xmlns:model="clr-namespace:DormitoryCross.Model"
              xmlns:viewmodel="clr-namespace:DormitoryCross.ViewModel"
              x:DataType="viewmodel:UserViewModel"
-             Title="{Binding Title}">
+             Title="Настройки пользователя">
     <ScrollView>
         <VerticalStackLayout Padding="10">
+            <Label Text="ID:"/>
             <Entry Placeholder="ID"
                    Margin="2"
                    Text="{Binding Id}"/>
+            <Label Text="Name:"/>
             <Entry Placeholder="Name"
                    Margin="2"
                    Text="{Binding Name}"/>
+            <Label Text="Email:"/>
             <Entry Placeholder="Email"
                    Margin="2"
                    Text="{Binding Email}"/>
+            <Label Text="Password:"/>
             <Entry Placeholder="Password"
                    Margin="2"
                    Text="{Binding Password}"/>
@@ -30,29 +34,27 @@
                 <Button Text="Редактировать" Margin="10,0,0,10"/>
             </HorizontalStackLayout>
             <Label Text="Пользователи:"/>
-            <RefreshView>
-                <CollectionView ItemsSource="{Binding Users}"
-                                SelectedItem="None">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:User">
-                            <Frame Margin="2" Padding="3" BackgroundColor="Transparent" BorderColor="Transparent">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer CommandParameter="{Binding .}"
-                                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserViewModel}}, Path=ClickedUserCommand}"/>
-                                </Frame.GestureRecognizers>
-                                <VerticalStackLayout>
-                                    <HorizontalStackLayout>
-                                        <Label Text="{Binding Id, StringFormat='ID: {0}|'}"/>
-                                        <Label Text="{Binding Name, StringFormat='Name: {0}|'}"/>
-                                        <Label Text="{Binding Password, StringFormat='Pass: {0}'}"/>
-                                    </HorizontalStackLayout>
-                                    <BoxView HeightRequest="1" BackgroundColor="{StaticResource Primary}"/>
-                                </VerticalStackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </RefreshView>
+            <CollectionView ItemsSource="{Binding Users}"
+                SelectedItem="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:User">
+                        <Frame Margin="2" Padding="3" BackgroundColor="Transparent" BorderColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:UserViewModel}}, Path=ClickedUserCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label Text="{Binding Id, StringFormat='ID: {0}|'}"/>
+                                    <Label Text="{Binding Name, StringFormat='Name: {0}|'}"/>
+                                    <Label Text="{Binding Password, StringFormat='Pass: {0}'}"/>
+                                </HorizontalStackLayout>
+                                <BoxView HeightRequest="1" BackgroundColor="{StaticResource Primary}"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

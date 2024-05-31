@@ -28,25 +28,6 @@ namespace DormitoryCross.Services
             httpClient = new HttpClient();
         }
 
-        public async Task<List<Student>> GetStudents()
-        {
-            if(students?.Count > 0)
-            {
-                return students;
-            }
-
-            var url = "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/MonkeysApp/monkeydata.json";
-
-            var response = await httpClient.GetAsync(url);
-
-            if (response.IsSuccessStatusCode)
-            {
-                students = await response.Content.ReadFromJsonAsync<List<Student>>();
-            }
-
-            return students;
-        }
-
         async Task Connection()
         {
             if (mySqlConnection != null)
@@ -217,5 +198,24 @@ namespace DormitoryCross.Services
                 mySqlConnection.Close();
             }
         }
+
+        //public async Task<List<Student>> GetStudents()
+        //{
+        //    if (students?.Count > 0)
+        //    {
+        //        return students;
+        //    }
+
+        //    var url = "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/MonkeysApp/monkeydata.json";
+
+        //    var response = await httpClient.GetAsync(url);
+
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        students = await response.Content.ReadFromJsonAsync<List<Student>>();
+        //    }
+
+        //    return students;
+        //}
     }
 }

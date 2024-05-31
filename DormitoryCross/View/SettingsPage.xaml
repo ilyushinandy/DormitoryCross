@@ -116,7 +116,7 @@
 
             <Label Text="©2022 PGUAS from Ilyushin Andrey"
                    TextColor="{StaticResource Primary}"
-                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
                    Margin="5"
                    Padding="0,0,0,5"/>
 

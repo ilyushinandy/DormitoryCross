@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:DormitoryCross.ViewModel"
              x:Class="DormitoryCross.View.AddStudent"
              x:DataType="viewmodels:AddStudentViewModel"
-             Title="Добавить студента">
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <viewmodels:AddStudentViewModel/>
@@ -13,25 +13,24 @@
     <ScrollView>
         <Grid RowDefinitions="*,*">
             <VerticalStackLayout Grid.RowSpan="2" Margin="5">
-                <Label Text="Фамилия Имя Отчество:"
-               Style="{StaticResource LabelFrame}"/>
-                <Entry Text="{Binding FullName}"/>
-                <Label Text="Номер договора:" Style="{StaticResource LabelFrame}"/>
-                <Entry Text="{Binding NumberContract}"/>
-                <Label Text="Период проживания:" Style="{StaticResource LabelFrame}"/>
-                <Entry Text="{Binding Period}"/>
-                <Label Text="Группа:" Style="{StaticResource LabelFrame}"/>
-                <Entry Text="{Binding Group}"/>
-                <Label Text="Номер комнаты:" Style="{StaticResource LabelFrame}"/>
-                <Entry Text="{Binding NumberRoom}"/>
-                <Label Text="Телефон:" Style="{StaticResource LabelFrame}"/>
-                <Entry Text="{Binding Telefone}"/>
+                <Label Text="Фамилия Имя Отчество:" />
+                <Entry Text="{Binding FullName}" Placeholder="Введите ФИО студента"/>
+                <Label Text="Номер договора:"/>
+                <Entry Text="{Binding NumberContract}" Placeholder=" Введите номер договора"/>
+                <Label Text="Период проживания:"/>
+                <Entry Text="{Binding Period}" Placeholder="Введите период проживания"/>
+                <Label Text="Группа:"/>
+                <Entry Text="{Binding Group}" Placeholder="Введите группу"/>
+                <Label Text="Номер комнаты:"/>
+                <Entry Text="{Binding NumberRoom}" Placeholder="Введите номер комнаты"/>
+                <Label Text="Телефон:"/>
+                <Entry Text="{Binding Telefone}" Placeholder="Введите телефон"/>
                 <Label Text="Дополнительная информация" TextColor="{StaticResource Primary}" Style="{StaticResource LabelFrame}"/>
                 <BoxView HeightRequest="1" BackgroundColor="{StaticResource Primary}"/>
-                <Label Text="ФИО родителй:" Style="{StaticResource LabelFrame}"/>
-                <Entry Text="{Binding FullNameParents}"/>
-                <Label Text="Телефон родителей:" Style="{StaticResource LabelFrame}"/>
-                <Entry Text="{Binding TelefoneParents}"/>
+                <Label Text="ФИО родителй:"/>
+                <Entry Text="{Binding FullNameParents}" Placeholder="Введите ФИО родителей"/>
+                <Label Text="Телефон родителей:"/>
+                <Entry Text="{Binding TelefoneParents}" Placeholder="Введите телефон родителей"/>
 
                 <Button Text="Сохранить"
                 IsEnabled="{Binding IsNotBusy}"

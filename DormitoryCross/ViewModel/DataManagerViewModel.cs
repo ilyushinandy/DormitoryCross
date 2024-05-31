@@ -17,13 +17,20 @@ namespace DormitoryCross.ViewModel
     public partial class DataManagerViewModel : BaseViewModel
     {
         SQLServices sQLServices;
+
+        ServerServices serverServices;
+
         PickOptions options;
+        
         bool errorLoad = false;
+        
         public ObservableCollection<Student> Students { get; } = new();
 
         public DataManagerViewModel()
         {
+            Title = "Управление данными";
             this.sQLServices = new SQLServices();
+            this.serverServices =  new ServerServices();
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
             var customFileType = new FilePickerFileType(
@@ -234,7 +241,7 @@ namespace DormitoryCross.ViewModel
             {
                 if (confirm)
                 {
-                    ServerServices serverServices = new ServerServices();
+                    
 
                     await sQLServices.RemoveAllStudent();
 

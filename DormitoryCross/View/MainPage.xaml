@@ -2,9 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DormitoryCross.View.MainPage"
-             Title="ПГУАС Общежитие №3">
+             Title="ПГУАС Общежитие">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior  IsVisible="False"/>
+    </Shell.BackButtonBehavior>
 
-    <ScrollView>
+        <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25"

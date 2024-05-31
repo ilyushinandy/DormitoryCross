@@ -1,12 +1,4 @@
-﻿using DocumentFormat.OpenXml.Drawing.Charts;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using MySql.Data.MySqlClient;
-using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SQLite;
 
 namespace DormitoryCross.Services
 {
@@ -19,7 +11,7 @@ namespace DormitoryCross.Services
             if (conn != null)
                 return;
 
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyDataStudent");
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyDataDormitory");
 
             conn = new SQLiteAsyncConnection(databasePath);
             await conn.CreateTableAsync<Student>();
@@ -97,8 +89,6 @@ namespace DormitoryCross.Services
         {
             await Init();
 
-            //var students = await conn.Table<Student>().Where(s => s.FullName.Contains(fullName)).ToListAsync();
-            //string query = $"SELECT * FROM `Students` WHERE FULLNAME LIKE @value";
             var students = await conn.QueryAsync<Student>($"SELECT * FROM Student WHERE FULLNAME LIKE '%{fullName}%'");
 
             return students;

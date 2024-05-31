@@ -63,14 +63,12 @@ namespace DormitoryCross.ViewModel
             await Shell.Current.GoToAsync($"{nameof(AddStudent)}?RoomAdd={numberRoom}");
         }
 
-        [RelayCommand]
-        async Task Remove(Student student)
-        {
-            await sQLServices.RemoveStudent(student.Id);
-            await Refresh();
-        }
-
-        
+        //[RelayCommand]
+        //async Task Remove(Student student)
+        //{
+        //    await sQLServices.RemoveStudent(student.Id);
+        //    await Refresh();
+        //}
 
         [RelayCommand]
         async Task Refresh()

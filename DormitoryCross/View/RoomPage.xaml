@@ -8,17 +8,15 @@
              Title="{Binding NumberRoom, StringFormat='Комната № {0}'}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh"
+        <ToolbarItem Text=""
                      Command="{Binding RefreshCommand}"/>
     </ContentPage.ToolbarItems>
 
-    <Grid ColumnDefinitions="*,*"
-          ColumnSpacing="5"
-          RowDefinitions="Auto,*,Auto"
+    <Grid RowDefinitions="Auto,*,Auto"
           RowSpacing="0">
 
         <Label Text="{Binding CountRoom}" Grid.Row="0"
-               Margin="0,10,0,0" HorizontalTextAlignment="Center" HorizontalOptions="Center">
+               Margin="0,10,0,0" HorizontalOptions="Center">
             <Label.Triggers>
                 <DataTrigger TargetType="Label" Binding="{Binding ColorRoom}" Value="true">
                     <Setter Property="TextColor" Value="Red"/>
@@ -40,7 +38,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Student">
                         <Grid Padding="10, 10, 10, 10" Margin="0, 0, 0, 10">
-                            <Frame CornerRadius="20" Padding="10" Margin="0">
+                            <Frame CornerRadius="20" Padding="25" Margin="0" VerticalOptions="CenterAndExpand">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer CommandParameter="{Binding .}"
                                               Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:StudentsViewModel}}, Path=GoToDetailsCommand}"/>

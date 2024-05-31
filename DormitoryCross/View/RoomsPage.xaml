@@ -31,6 +31,9 @@
                                 <DataTrigger TargetType="Frame" Binding="{Binding Color}" Value="Red">
                                     <Setter Property="BackgroundColor" Value="Red"/>
                                 </DataTrigger>
+                                <DataTrigger TargetType="Frame" Binding="{Binding Color}" Value="Green">
+                                    <Setter Property="BackgroundColor" Value="Green"/>
+                                </DataTrigger>
                             </Frame.Triggers>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="{Binding .}"

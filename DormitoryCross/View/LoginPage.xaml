@@ -32,7 +32,7 @@
 
         <Label Text="Для сброса пароля обратитесь в поддержку по электронному адресу: ilyushinandy@yandex.ru"
                HorizontalOptions="Center"
-               IsVisible="false"
+               IsVisible="True"
                x:Name="helpText"/>
     </VerticalStackLayout>
 </ContentPage>

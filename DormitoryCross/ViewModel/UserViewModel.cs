@@ -51,7 +51,7 @@ namespace DormitoryCross.ViewModel
                 Title = "Настройки";
             }
 
-            ButtonText = "Сохранить";
+            ButtonText = "Зарегистрироваться";
         }
 
         async Task Init()
@@ -167,7 +167,7 @@ namespace DormitoryCross.ViewModel
                 Name = "";
                 Email = "";
                 Password = "";
-                ButtonText = "Сохранить";
+                ButtonText = "Зарегистрироваться";
                 await Toast.Make("Удаление успешно!").Show();
                 await GetUsers();
             }

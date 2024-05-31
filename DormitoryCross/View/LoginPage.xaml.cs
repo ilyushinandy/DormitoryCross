@@ -1,4 +1,3 @@
-using DocumentFormat.OpenXml.Spreadsheet;
 using DormitoryCross.Services;
 
 namespace DormitoryCross.View;
@@ -31,9 +30,9 @@ public partial class LoginPage : ContentPage
     {
         try
         {
-            if (password.Text.Equals(passwordAdmin))
+            if (password.Text.Equals(passwordAdmin) && login.Text == null)
             {
-                await Shell.Current.GoToAsync($"{nameof(AdminPage)}?Settings={logindAdmin}");
+                await Shell.Current.GoToAsync($"/{nameof(AdminPage)}?Settings={logindAdmin}");
             }
             else if(password.Text.Equals(passwordAdmin) && login.Text.Equals(logindAdmin))
             {

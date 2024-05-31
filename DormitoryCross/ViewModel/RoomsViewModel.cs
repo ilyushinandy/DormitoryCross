@@ -45,7 +45,7 @@ namespace DormitoryCross.ViewModel
 
         public Dictionary<string, int> mapRooms = new Dictionary<string, int>
         {
-            {"1А", 0},  {"2А", 0},  {"3А", 0},  {"4А", 0},  {"5А", 0},  {"6А", 0},  {"7А", 0},  {"8А", 0},  {"4", 0},   {"5", 0},   {"6", 0},   {"7", 0},   {"8", 0},   {"9", 0}, {"10", 0}, {"11", 0}, {"12", 0},
+            {"1A", 0},  {"2A", 0},  {"3A", 0},  {"4A", 0},  {"5A", 0},  {"6A", 0},  {"7A", 0},  {"8A", 0},  {"4", 0},   {"5", 0},   {"6", 0},   {"7", 0},   {"8", 0},   {"9", 0}, {"10", 0}, {"11", 0}, {"12", 0},
             {"13", 0},  {"14", 0},  {"15", 0},  {"16", 0},  {"17", 0},  {"18", 0},  {"19", 0},  {"20", 0},  {"21", 0},  {"22", 0},  {"23", 0},  {"24", 0},  {"25", 0},  {"26", 0}, {"27", 0}, {"28", 0}, {"29", 0}, {"30", 0}, {"31", 0}, {"32", 0},
             {"33", 0},  {"34", 0},  {"35", 0},  {"36", 0},  {"37", 0},  {"38", 0},  {"39", 0},  {"40", 0},  {"41", 0},  {"42", 0},  {"43", 0},  {"44", 0},  {"45", 0},  {"46", 0}, {"47", 0}, {"48", 0}, {"49", 0}, {"50", 0}, {"51", 0}, {"52", 0},
             {"53", 0},  {"54", 0},  {"55", 0},  {"56", 0},  {"57", 0},  {"58", 0},  {"59", 0},  {"60", 0},  {"61", 0},  {"62", 0},  {"63", 0},  {"64", 0},  {"65", 0},  {"66", 0}, {"67", 0}, {"68", 0}, {"69", 0}, {"70", 0}, {"71", 0}, {"72", 0},
@@ -72,18 +72,18 @@ namespace DormitoryCross.ViewModel
         {
             Rooms.Clear();
 
-            Rooms.Add(new Room("1A", Color.FromHex("#527da3")));
-            Rooms.Add(new Room("2A", Color.FromHex("#527da3")));
-            Rooms.Add(new Room("3A", Color.FromHex("#527da3")));
-            Rooms.Add(new Room("4A", Color.FromHex("#527da3")));
-            Rooms.Add(new Room("5A", Color.FromHex("#527da3")));
-            Rooms.Add(new Room("6A", Color.FromHex("#527da3")));
-            Rooms.Add(new Room("7A", Color.FromHex("#527da3")));
-            Rooms.Add(new Room("8A", Color.FromHex("#527da3")));
+            Rooms.Add(new Room("1A", Colors.Green));
+            Rooms.Add(new Room("2A", Colors.Green));
+            Rooms.Add(new Room("3A", Colors.Green));
+            Rooms.Add(new Room("4A", Colors.Green));
+            Rooms.Add(new Room("5A", Colors.Green));
+            Rooms.Add(new Room("6A", Colors.Green));
+            Rooms.Add(new Room("7A", Colors.Green));
+            Rooms.Add(new Room("8A", Colors.Green));
 
             for (int i = 4; i < 248; i++)
             {
-                Rooms.Add(new Room($"{i}", Color.FromHex("#527da3")));
+                Rooms.Add(new Room($"{i}", Colors.Green));
             }
 
             await Refresh();
@@ -121,9 +121,17 @@ namespace DormitoryCross.ViewModel
                                     OnPropertyChanged();
                                 }
                             }
+                            else if (mapRooms[number].Equals(3))
+                            {
+                                foreach (var room in Rooms)
+                                {
+                                    if (room.Number.Equals(number))
+                                        room.Color = Color.FromHex("#527da3");
+                                    OnPropertyChanged();
+                                }
+                            }
                         }
-
-                        if (twoRooms.Contains(number))
+                        else if (twoRooms.Contains(number))
                         {
                             if (mapRooms[number] > 2)
                             {
@@ -131,6 +139,15 @@ namespace DormitoryCross.ViewModel
                                 {
                                     if (room.Number.Equals(number))
                                         room.Color = Colors.Red;
+                                    OnPropertyChanged();
+                                }
+                            }
+                            else if (mapRooms[number].Equals(2))
+                            {
+                                foreach (var room in Rooms)
+                                {
+                                    if (room.Number.Equals(number))
+                                        room.Color = Color.FromHex("#527da3");
                                     OnPropertyChanged();
                                 }
                             }
@@ -159,11 +176,7 @@ namespace DormitoryCross.ViewModel
             if (room is null)
                 return;
 
-            await Shell.Current.GoToAsync($"{nameof(RoomPage)}", true,
-                new Dictionary<string, object>
-                {
-                    {"NumberRoom", room.Number }
-                });
+            await Shell.Current.GoToAsync($"{nameof(RoomPage)}?NumberRoom={room.Number}");
         }
     }
 }
