@@ -43,5 +43,5 @@
  <span disolay="inline">
   <img src="https://github.com/ilyushinandy/DormitoryCross/blob/d44635d6a03dc4bc289ce5f6bbb42dd15253a7a6/photo_2024-05-31_23-57-54.jpg" height="300"/>
   <img src="https://github.com/ilyushinandy/DormitoryCross/blob/d346010883420cc0e512fe7974c1a7d42d65dec9/photo_2024-06-01_10-17-38.jpg" height="300"/>
-  <img src="https://github.com/ilyushinandy/DormitoryCross/blob/d44635d6a03dc4bc289ce5f6bbb42dd15253a7a6/photo_2024-06-01_10-17-38.jpg" height="300"/>
+  <img src="https://github.com/ilyushinandy/DormitoryCross/blob/d346010883420cc0e512fe7974c1a7d42d65dec9/photo_2024-06-08_15-17-44.jpg" height="300"/>
  </span>
