@@ -3,7 +3,7 @@
 
 <span display="inline">
   <img src="https://github.com/ilyushinandy/DormitoryCross/blob/2fcdf11bc9eedfe34ea98bf9b85a1605d46027da/photo_2024-05-31_23-57-33.jpg" height="300" padding="10"/>
-  <img src="[https://user-images.githubusercontent.com/97675571/203785153-9d39f181-9a45-409b-8912-54816cb2935d.jpg](https://github.com/ilyushinandy/DormitoryCross/blob/2fcdf11bc9eedfe34ea98bf9b85a1605d46027da/photo_2024-05-31_23-57-58.jpg)" height="300" padding="10"/>
+  <img src="https://github.com/ilyushinandy/DormitoryCross/blob/2fcdf11bc9eedfe34ea98bf9b85a1605d46027da/photo_2024-05-31_23-57-58.jpg" height="300" padding="10"/>
   <img src="https://user-images.githubusercontent.com/97675571/203785098-aeaa21e7-5cfc-4045-9493-fc23d29b6838.png" height="300" padding="10"/>
   <img src="https://user-images.githubusercontent.com/97675571/203785077-df0063e0-1fdd-4a94-9dcf-500d9a534126.jpg" height="300"/>
 </span>
