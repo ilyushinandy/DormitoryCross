@@ -5,7 +5,7 @@
   <img src="https://github.com/ilyushinandy/DormitoryCross/blob/2fcdf11bc9eedfe34ea98bf9b85a1605d46027da/photo_2024-05-31_23-57-33.jpg" height="300" padding="10"/>
   <img src="https://github.com/ilyushinandy/DormitoryCross/blob/2fcdf11bc9eedfe34ea98bf9b85a1605d46027da/photo_2024-05-31_23-57-58.jpg" height="300" padding="10"/>
   <img src="https://user-images.githubusercontent.com/97675571/203785098-aeaa21e7-5cfc-4045-9493-fc23d29b6838.png" height="300" padding="10"/>
-  <img src="https://user-images.githubusercontent.com/97675571/203785077-df0063e0-1fdd-4a94-9dcf-500d9a534126.jpg" height="300"/>
+  <img src="https://github.com/ilyushinandy/DormitoryCross/blob/620929b74d363351a3aab3b1fa9867c930be78dd/photo_2024-05-31_23-57-57.jpg" height="300"/>
 </span>
 <span disolay="inline">
   <img src="https://user-images.githubusercontent.com/97675571/203785154-cf699b23-5476-4d69-bd55-dabc564cf38b.jpg" height="300"/>
